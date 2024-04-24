@@ -10,7 +10,6 @@
       padding: 0;
       height: 100%;
       font-family: 'Teko', sans-serif; /* Use Teko font */
-      overflow: hidden; /* Prevent scrolling */
     }
 
     .container {
@@ -61,10 +60,24 @@
     <a href="https://www.instagram.com/abdul_x_manan/" target="_blank">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@3/icons/instagram.svg" alt="Instagram" style="width: 30px; height: 30px;">
     </a>
+    <p id="visitCount">Total Visits: </p>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Check if the visitor has visited before using cookies
+      var visitCount = getCookie("visitCount");
+      if (!visitCount) {
+        // Increment the visit count and set it in a cookie
+        visitCount = 1;
+        setCookie("visitCount", visitCount, 365); // Set cookie to expire in 365 days
+      } else {
+        visitCount = parseInt(visitCount);
+      }
+
+      // Display the visit count
+      document.getElementById("visitCount").textContent += visitCount;
+
       // Array of advice statements
       var adviceList = [
         "Believe in yourself.",
@@ -89,6 +102,28 @@
 
       // Call the function to generate random advice when the page loads
       generateRandomAdvice();
+
+      // Helper functions for handling cookies
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
     });
   </script>
 </body>
