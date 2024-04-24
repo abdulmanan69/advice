@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Advice Generator</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Teko', sans-serif; /* Use Teko font */
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100% - 60px); /* Adjusted height to lift up the advice text */
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    .advice {
+      font-size: 3rem; /* Adjust the font size as needed */
+      text-align: center;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <p>Reload for new advice</p>
+  </div>
+
+  <div class="container">
+    <div class="advice" id="advice"></div>
+  </div>
+
+  <div class="footer">
+    <p>This website is created by Abdul Manan</p>
+    <a href="https://www.instagram.com/abdul_x_manan/" target="_blank">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@3/icons/instagram.svg" alt="Instagram" style="width: 30px; height: 30px;">
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Array of advice statements
+      var adviceList = [
+        "Believe in yourself.",
+        "Stay positive.",
+        "Take risks.",
+        "Learn from your mistakes.",
+        "Embrace change.",
+        "Be grateful.",
+        "Focus on the present.",
+        "Never give up.",
+        "Be kind to yourself.",
+        "Stay curious."
+        // Add more advice statements as needed
+      ];
+
+      // Function to generate a random advice
+      function generateRandomAdvice() {
+        var randomIndex = Math.floor(Math.random() * adviceList.length);
+        var randomAdvice = adviceList[randomIndex];
+        document.getElementById("advice").innerText = randomAdvice;
+      }
+
+      // Call the function to generate random advice when the page loads
+      generateRandomAdvice();
+    });
+  </script>
+</body>
+</html>
