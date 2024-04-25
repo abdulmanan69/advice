@@ -5,10 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Advice Generator</title>
   <style>
-    body {
-      font-family: 'Teko', sans-serif; /* Apply Teko font */
+    body, html {
       margin: 0;
       padding: 0;
+      height: 100%;
+      font-family: 'Teko', sans-serif; /* Use Teko font */
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100% - 60px); /* Adjusted height to lift up the advice text */
+      overflow: hidden; /* Prevent scrolling */
+      flex-direction: column; /* Center-align content vertically */
+    }
+
+    .advice {
+      font-size: 3rem; /* Adjust the font size as needed */
+      text-align: center;
     }
 
     .header {
@@ -18,21 +34,8 @@
       margin-bottom: 20px;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: calc(100vh - 200px); /* Adjusted height to lift up the advice text */
-      overflow: hidden; /* Prevent scrolling */
-    }
-
-    .advice {
-      font-size: 3rem; /* Adjust the font size as needed */
-      text-align: center;
-    }
-
     .footer {
-      position: fixed;
+      position: absolute;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
@@ -41,13 +44,9 @@
       text-align: center;
     }
 
-    #totalVisits {
+    #totalCount {
+      font-size: 1.5rem;
       font-weight: bold;
-    }
-
-    /* Hide hit counter plugin */
-    #counter {
-      display: none;
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,19 +54,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Hit counter plugin code -->
-  <div id="counter">
-    <script type="text/javascript" src="https://freehitcounters.org/count/fdo9"></script>
-    <a href='http://www.freevisitorcounters.com'>http://freevisitorcounters.com</a>
-    <script type='text/javascript' src='https://whomania.com/ctr?id=c77ba71d202ec541240a111151a248f92436511e'></script>
-  </div>
-
   <div class="header">
     <p>Reload for new advice</p>
   </div>
 
   <div class="container">
     <div class="advice" id="advice"></div>
+    <!-- New widget code -->
+    <div id="sfcuwwmscqk99fkrxjh9rm5lga21rfbnglu"></div>
+    <script type="text/javascript" src="https://counter11.optistats.ovh/private/counter.js?c=uwwmscqk99fkrxjh9rm5lga21rfbnglu&down=async" async></script>
+    <div class="powr-hit-counter" id="37022f7c_1714008563"></div><script src="https://www.powr.io/powr.js?platform=html"></script>
+    <div id="totalCount">Total Count: Loading...</div>
   </div>
 
   <div class="footer">
@@ -75,27 +72,9 @@
     <a href="https://www.instagram.com/abdul_x_manan/" target="_blank">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@3/icons/instagram.svg" alt="Instagram" style="width: 30px; height: 30px;">
     </a>
-    <p id="visitCount">Total Visits: <span id="totalVisits">Loading...</span></p>
   </div>
 
-  <!-- Your third-party analytics tracking code here -->
-
   <script>
-    // Function to fetch total visit count and update the page
-    function updateVisitCount() {
-      // Retrieve total visit count from the hit counter plugin
-      var totalVisits = document.querySelector("#counter > .fhc-gadget-number");
-      if (totalVisits) {
-        document.getElementById("totalVisits").textContent = totalVisits.textContent;
-      } else {
-        // If total visit count is not available yet, retry after a short delay
-        setTimeout(updateVisitCount, 1000);
-      }
-    }
-
-    // Call the function to fetch total visit count and update the page
-    updateVisitCount();
-
     document.addEventListener("DOMContentLoaded", function() {
       // Array of advice statements
       var adviceList = [
@@ -121,6 +100,25 @@
 
       // Call the function to generate random advice when the page loads
       generateRandomAdvice();
+      
+      // Function to fetch visit count from POWR Hit Counter widget
+      function getVisitCountFromPOWR() {
+        // Find the POWR Hit Counter widget
+        var hitCounterWidget = document.getElementById('37022f7c_1714008563');
+        
+        // Access the count using POWR API
+        if (window.POWR) {
+          POWR.utils.hookAfterRender('hit-counter', function(element) {
+            var count = element.getAttribute('data-counter-value');
+            document.getElementById('totalCount').textContent = "Total Count: " + count;
+          });
+        } else {
+          console.error('POWR Hit Counter API not found.');
+        }
+      }
+
+      // Call the function to fetch visit count
+      getVisitCountFromPOWR();
     });
   </script>
 </body>
