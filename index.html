@@ -19,7 +19,6 @@
       align-items: center;
       height: calc(100% - 60px); /* Adjusted height to lift up the advice text */
       overflow: hidden; /* Prevent scrolling */
-      flex-direction: column; /* Center-align content vertically */
     }
 
     .advice {
@@ -43,15 +42,11 @@
       color: #888;
       text-align: center;
     }
-
-    #totalCount {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <script src="https://www.powr.io/powr.js?platform=html"></script> <!-- Added Hit Counter Script -->
 </head>
 <body>
   <div class="header">
@@ -60,11 +55,6 @@
 
   <div class="container">
     <div class="advice" id="advice"></div>
-    <!-- New widget code -->
-    <div id="sfcuwwmscqk99fkrxjh9rm5lga21rfbnglu"></div>
-    <script type="text/javascript" src="https://counter11.optistats.ovh/private/counter.js?c=uwwmscqk99fkrxjh9rm5lga21rfbnglu&down=async" async></script>
-    <div class="powr-hit-counter" id="37022f7c_1714008563"></div><script src="https://www.powr.io/powr.js?platform=html"></script>
-    <div id="totalCount">Total Count: Loading...</div>
   </div>
 
   <div class="footer">
@@ -72,6 +62,7 @@
     <a href="https://www.instagram.com/abdul_x_manan/" target="_blank">
       <img src="https://cdn.jsdelivr.net/npm/simple-icons@3/icons/instagram.svg" alt="Instagram" style="width: 30px; height: 30px;">
     </a>
+    <div class="powr-hit-counter" id="37022f7c_1714008563"></div> <!-- Hit Counter -->
   </div>
 
   <script>
@@ -100,25 +91,6 @@
 
       // Call the function to generate random advice when the page loads
       generateRandomAdvice();
-      
-      // Function to fetch visit count from POWR Hit Counter widget
-      function getVisitCountFromPOWR() {
-        // Find the POWR Hit Counter widget
-        var hitCounterWidget = document.getElementById('37022f7c_1714008563');
-        
-        // Access the count using POWR API
-        if (window.POWR) {
-          POWR.utils.hookAfterRender('hit-counter', function(element) {
-            var count = element.getAttribute('data-counter-value');
-            document.getElementById('totalCount').textContent = "Total Count: " + count;
-          });
-        } else {
-          console.error('POWR Hit Counter API not found.');
-        }
-      }
-
-      // Call the function to fetch visit count
-      getVisitCountFromPOWR();
     });
   </script>
 </body>
